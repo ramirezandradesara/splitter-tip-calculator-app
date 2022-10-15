@@ -1,0 +1,53 @@
+// Colors
+
+$strongCyan: hsl(172, 67%, 45%);
+$veryDarkCyan: hsl(183, 100%, 15%);
+$darkGrayishCyan: hsl(186, 14%, 43%);
+$grayishCyan: hsl(184, 14%, 56%);
+$lightGrayishCyan: hsl(185, 41%, 84%);
+$veryLightGrayishCyan: hsl(189, 41%, 97%);
+$white: hsl(0, 0%, 100%);
+
+
+* {
+  font-family: 'Space Mono', monospace;
+  margin: 0;
+  padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  font-size: 24px;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  cursor: pointer;
+}
+
+@mixin breakpoints($point) {
+  // mobile
+  @if $point==sm {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
+
+  // tablet
+  @if $point==md {
+    @media (min-width: 768px) and (max-width: 1024px) {
+      @content;
+    }
+
+    // desktop
+    @if $point==lg {
+      @media (min-width: 1025px) and (max-width: 1920px) {
+        @content;
+      }
+    }
+  }
+}
