@@ -4,7 +4,7 @@ import './Output.scss'
 function Output() {
   return (
     <div className='output'>
-      <div>
+      <div className='top_section'>
         <div className='output_section'>
           <div className='output_section_title'>
             <h4>Tip Amount</h4>

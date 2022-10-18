@@ -5,12 +5,13 @@
     min-width: 50%;
     min-height: 50%;
     display: flex;
-    align-items: center;
     border-radius: 15px;
     margin-top: 50px;
+    display: flex;
     padding: 30px;
-}
-
-.logo{
-    letter-spacing: 12px;
+    
+    @include breakpoints(sm) {
+        flex-direction: column;
+        padding: 20px;
+    }
 }

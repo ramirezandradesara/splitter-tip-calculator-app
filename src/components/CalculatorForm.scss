@@ -5,22 +5,31 @@
     min-width: 50%;
     min-height: 100%;
     margin-right: 15px;
+
+    @include breakpoints(sm) {
+        margin-right: 0px;
+    }
+
+    form {
+        min-width: 100%;
+    }
 }
 
-form {
-    min-width: 100%;
-}
 
 .form_label {
     color: $darkGrayishCyan;
     margin-bottom: 8px;
     font-size: 13px;
+
+    @include breakpoints (sm) {
+        font-size: 15px;
+    }
 }
 
 .form_input {
     position: relative;
     width: 100%;
-    
+
     &_icon_bill {
         position: absolute;
         // width: 10px;
