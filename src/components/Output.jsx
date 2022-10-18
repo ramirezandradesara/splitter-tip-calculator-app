@@ -5,20 +5,19 @@ function Output() {
   return (
     <div className='output'>
       <div>
-        <div>
-          <h4>Tip Amount</h4>
-          <small>/ person</small>
-        </div>
-        <div>
+        <div className='output_section'>
+          <div className='output_section_title'>
+            <h4>Tip Amount</h4>
+            <small>/ person</small>
+          </div>
           <h1>$0.00</h1>
         </div>
-      </div>
-      <div>
-        <div>
-          <h4>Total</h4>
-          <small>/ person</small>
-        </div>
-        <div>
+
+        <div className='output_section'>
+          <div className='output_section_title'>
+            <h4>Total</h4>
+            <small>/ person</small>
+          </div>
           <h1>$0.00</h1>
         </div>
       </div>
