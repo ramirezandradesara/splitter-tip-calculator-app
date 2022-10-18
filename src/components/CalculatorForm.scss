@@ -1,0 +1,130 @@
+@import '../index.scss';
+
+.calculatorForm {
+    display: flex;
+    min-width: 50%;
+    min-height: 100%;
+    margin-right: 15px;
+}
+
+form {
+    min-width: 100%;
+}
+
+.form_label {
+    color: $darkGrayishCyan;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.form_input {
+    position: relative;
+    width: 100%;
+    
+    &_icon_bill {
+        position: absolute;
+        // width: 10px;
+        // height: 15px;
+        background-image: url('../images/icon-dollar.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        top: 25%;
+        padding: 8px 5px;
+        margin-left: 15px;
+    }
+
+    &_icon_person {
+        position: absolute;
+        // width: 10px;
+        // height: 15px;
+        background: url('../images/icon-person.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        top: 30%;
+        padding: 7px 6px;
+        margin-left: 15px;
+    }
+}
+
+.bill_section,
+.tip_section {
+    margin-bottom: 25px;
+}
+
+.bill_section,
+.people_section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 100%;
+
+    input {
+        border: 1px solid $veryLightGrayishCyan;
+        background-color: $veryLightGrayishCyan;
+        color: $grayishCyan;
+        min-width: 100%;
+        padding: 5px 15px;
+        text-align: end;
+        border-radius: 5px;
+        font-size: 19px;
+    }
+
+    // input[name='bill'] {
+    //     background: url('../images/icon-dollar.svg') no-repeat scroll 7px 7px;
+    // }
+
+    // input[name='numberOfPeople'] {
+    //     background-image: url('../images/icon-person.svg') no-repeat scroll 7px 7px;
+    //     z-index: 9;
+    //     ;
+    // }
+}
+
+
+.tip_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    min-width: 100%;
+
+    &_options {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        &_label {
+            width: 30%;
+            padding: 4px 0px;
+            color: $white;
+            background-color: $veryDarkCyan;
+            border-radius: 5px;
+            margin: 5px 0px;
+            font-size: 18.5px;
+        }
+
+        &_input {
+            margin: 0;
+            padding: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+
+
+            &_custom {
+                border: 1px solid transparent;
+                background-color: $veryLightGrayishCyan;
+                color: $grayishCyan;
+                width: 30%;
+                border-radius: 5px;
+                margin: 5px 0px;
+                text-align: end;
+                font-size: 19px;
+                padding: 5px 15px;
+            }
+        }
+    }
+}

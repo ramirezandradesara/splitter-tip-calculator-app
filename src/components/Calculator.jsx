@@ -1,13 +1,13 @@
 import React from 'react'
 import './Calculator.scss'
-import Operation from './Operation'
+import CalculatorForm from './CalculatorForm'
 import Output from './Output'
 
 function Calculator() {
 
   return (
     <div className='calculator'>
-      <Operation />
+      <CalculatorForm />
       <Output />
     </div>
   )
