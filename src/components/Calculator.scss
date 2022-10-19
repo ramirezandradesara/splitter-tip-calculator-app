@@ -13,5 +13,6 @@
     @include breakpoints(sm) {
         flex-direction: column;
         padding: 20px;
+        min-width: 100%;
     }
 }

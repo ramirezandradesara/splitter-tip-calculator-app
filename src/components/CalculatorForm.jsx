@@ -2,31 +2,53 @@ import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import './CalculatorForm.scss'
 
+/**
+ * Componentes del formulario
+ * @returns {JSX.Element}
+ * @todo input color red when there's an error
+ */
 function CalculatorForm() {
+
   return (
+
     <div className='calculatorForm'>
       <Formik
         initialValues={{
-          bill: 0,
-          tipPercentage: 0,
-          numberOfPeople: 0
+          bill: null,
+          tipPercentage: null,
+          numberOfPeople: null
         }}
         validate={values => {
-          const errors = {};
+          const errors = {
+            bill: 0,
+          };
           if (!values.bill) {
-            errors.email = 'Required';
-          } else if (
-            /^[0-9]$/.test(values.bill)
-          ) {
-            errors.bill = 'Invalid email address';
+            errors.bill = "Can't be zero";
+          } else if (!/^[0-9]$/.test(values.bill)) {
+            errors.bill = "Only numbers";
           }
+
+          // if (!values.tipPercentage) {
+          //   errors.tipPercentage = "Can't be zeasdro";
+          // } else 
+          // --m
+
+          if (!values.numberOfPeople) {
+            errors.numberOfPeople = "Can't be zero";
+          } else if (!/^[0-9]$/.test(values.numberOfPeople)) {
+            errors.numberOfPeople = "Only numbers";
+          }
+
+          console.log(errors);
           return errors;
         }}
+
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert("Funciona xd")
           }, 400);
         }}
+
       >{({
         values,
         errors,
@@ -39,18 +61,8 @@ function CalculatorForm() {
       }) => (
         <Form >
           <section className='bill_section'>
-            <label className='form_label'>Bill</label>
-            <div className='form_input'>
-              <div className='form_input_icon_bill' />
-              <Field
-                type="bill"
-                name="bill"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.bill}
-                label="Bill"
-                placeholder="0"
-              />
+            <div className='label_section'>
+              <label className='form_label'>Bill</label>
               <ErrorMessage
                 name="bill"
                 component={() => (
@@ -58,11 +70,29 @@ function CalculatorForm() {
                 )}
               />
             </div>
+            <div className='form_input'>
+              <div className='form_input_icon_bill' />
+              <Field
+                type="text"
+                name="bill"
+                className={errors.bill === undefined ? 'error-message-input' : ''}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.bill}
+                label="Bill"
+                placeholder="0"
+              />
+            </div>
           </section>
 
           <section className='tip_section'>
             <label className='form_label'>Select Tip %</label>
-            <img src="C:\Users\sarar\OneDrive\Documentos\SARAA\Mis primeros diseños\tip-calculator-app\src\images\icon-dollar.svg" alt="" />
+            <ErrorMessage
+              name="tipPercentage"
+              component={() => (
+                <div className="error-message">{errors.tipPercentage}</div>
+              )}
+            />
             <div className='tip_section_options'>
               <label className="tip_section_options_label">
                 <Field
@@ -89,7 +119,6 @@ function CalculatorForm() {
                 15%
               </label>
             </div>
-
             <div className='tip_section_options'>
               <label className="tip_section_options_label">
                 <Field
@@ -122,21 +151,23 @@ function CalculatorForm() {
           </section>
 
           <section className='people_section'>
-            <label className='form_label'>Number of People</label>
-            <div className='form_input'>
-              <div className='form_input_icon_person' />
+            <div className='label_section'>
+              <label className='form_label'>Number of People</label>
               <ErrorMessage
                 name="numberOfPeople"
                 component={() => (
                   <div className="error-message">{errors.numberOfPeople}</div>
                 )}
               />
+            </div>
+            <div className='form_input'>
+              <div className='form_input_icon_person' />
               <Field
-                type="numberOfPeople"
+                type="text"
                 name="numberOfPeople"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.bill}
+                value={values.numberOfPeople}
                 placeholder="0"
               />
             </div>
@@ -144,7 +175,7 @@ function CalculatorForm() {
         </Form>
       )}
       </Formik>
-    </div>
+    </div >
   )
 }
 
