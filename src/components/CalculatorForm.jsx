@@ -10,7 +10,6 @@ import './CalculatorForm.scss'
 function CalculatorForm() {
 
   return (
-
     <div className='calculatorForm'>
       <Formik
         initialValues={{
@@ -19,27 +18,18 @@ function CalculatorForm() {
           numberOfPeople: null
         }}
         validate={values => {
-          const errors = {
-            bill: 0,
-          };
+          const errors = {};
           if (!values.bill) {
             errors.bill = "Can't be zero";
-          } else if (!/^[0-9]$/.test(values.bill)) {
-            errors.bill = "Only numbers";
           }
-
-          // if (!values.tipPercentage) {
-          //   errors.tipPercentage = "Can't be zeasdro";
-          // } else 
-          // --m
+          if (!values.tipPercentage) {
+            errors.tipPercentage = "Can't be zero";
+          }
 
           if (!values.numberOfPeople) {
             errors.numberOfPeople = "Can't be zero";
-          } else if (!/^[0-9]$/.test(values.numberOfPeople)) {
-            errors.numberOfPeople = "Only numbers";
           }
 
-          console.log(errors);
           return errors;
         }}
 
@@ -48,6 +38,8 @@ function CalculatorForm() {
             alert("Funciona xd")
           }, 400);
         }}
+
+
 
       >{({
         values,
@@ -73,9 +65,8 @@ function CalculatorForm() {
             <div className='form_input'>
               <div className='form_input_icon_bill' />
               <Field
-                type="text"
+                type="number"
                 name="bill"
-                className={errors.bill === undefined ? 'error-message-input' : ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.bill}
@@ -86,13 +77,15 @@ function CalculatorForm() {
           </section>
 
           <section className='tip_section'>
-            <label className='form_label'>Select Tip %</label>
-            <ErrorMessage
-              name="tipPercentage"
-              component={() => (
-                <div className="error-message">{errors.tipPercentage}</div>
-              )}
-            />
+            <div className='label_section'>
+              <label className='form_label'>Select Tip %</label>
+              <ErrorMessage
+                name="tipPercentage"
+                component={() => (
+                  <div className="error-message">{errors.tipPercentage}</div>
+                )}
+              />
+            </div>
             <div className='tip_section_options'>
               <label className="tip_section_options_label">
                 <Field
@@ -139,7 +132,7 @@ function CalculatorForm() {
 
               <Field
                 className="tip_section_options_input_custom"
-                type="text"
+                type="number"
                 name="tipPercentage"
                 // onChange={handleChange}
                 // onBlur={handleBlur}
@@ -163,7 +156,7 @@ function CalculatorForm() {
             <div className='form_input'>
               <div className='form_input_icon_person' />
               <Field
-                type="text"
+                type="number"
                 name="numberOfPeople"
                 onChange={handleChange}
                 onBlur={handleBlur}
