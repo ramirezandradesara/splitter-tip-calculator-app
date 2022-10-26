@@ -1,7 +1,7 @@
 import React from 'react'
 import './Calculator.scss'
-import CalculatorForm from './CalculatorForm'
-import Output from './Output'
+import CalculatorForm from '../CalculatorForm/CalculatorForm'
+import Output from '../Output/Output'
 
 function Calculator() {
 

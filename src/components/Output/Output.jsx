@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { TipContext } from './context/TipContext'
+import { TipContext } from '../context/TipContext'
 import './Output.scss'
 
 function Output() {

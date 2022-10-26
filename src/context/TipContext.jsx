@@ -6,6 +6,7 @@ export const TipProvider = (props) => {
     const [totalTip, setTotalTip] = useState(0)
     const [tipPerPerson, setTipPerPerson] = useState(0)
     const [billPerPerson, setBillPerPerson] = useState(0)
+    const [reset, setReset] = useState(false)
 
     const [data, setData] = useState({
         bill: null,
@@ -31,7 +32,9 @@ export const TipProvider = (props) => {
                 data, 
                 setData,
                 errors, 
-                setErrors
+                setErrors,
+                reset, 
+                setReset
             }}
         >
             {props.children}

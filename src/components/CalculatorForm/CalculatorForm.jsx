@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './CalculatorForm.scss'
-import { TipContext } from './context/TipContext'
+import { TipContext } from '../context/TipContext'
 
 /**
  * Componentes del formulario
