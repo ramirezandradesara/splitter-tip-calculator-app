@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { TipContext } from '../context/TipContext'
+import { TipContext } from '../../context/TipContext'
 import './Output.scss'
 
 function Output() {
@@ -14,10 +14,12 @@ function Output() {
     data,
     setData,
     errors,
-    setErrors
+    setErrors,
+    reset,
+    setReset
   } = useContext(TipContext)
 
-  const reset = () => {
+  const handleReset = () => {
     setTotalTip(0)
     setTipPerPerson(0)
     setBillPerPerson(0)
@@ -31,6 +33,8 @@ function Output() {
       tipPercentage: null,
       peopleNumber: null
     })
+
+    setReset(true)
   }
 
   return (
@@ -52,7 +56,7 @@ function Output() {
           <h1>${billPerPerson === 0 ? `${billPerPerson}.00` : billPerPerson}</h1>
         </div>
       </div>
-      <button onClick={() => reset()}>RESET</button>
+      <button onClick={() => handleReset()}>RESET</button>
     </div>
   )
 }

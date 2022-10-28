@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import './CalculatorForm.scss'
-import { TipContext } from '../context/TipContext'
+import { TipContext } from '../../context/TipContext'
 
 /**
  * Componentes del formulario
@@ -8,7 +8,8 @@ import { TipContext } from '../context/TipContext'
  * @todo stop custom input from resizing
  */
 function CalculatorForm() {
-
+  
+  const location = window.location
   const {
     totalTip,
     setTotalTip,
@@ -19,37 +20,30 @@ function CalculatorForm() {
     data,
     setData,
     errors,
-    setErrors
+    setErrors,
+    reset,
+    setReset
   } = useContext(TipContext)
-  console.log("🚀 ~ file: CalculatorForm.jsx ~ line 24 ~ CalculatorForm ~ errors", errors)
-  console.log("🚀 ~ file: CalculatorForm.jsx ~ line 24 ~ CalculatorForm ~ data", data)
-
-  // const [data, setData] = useState({
-  //   bill: null,
-  //   tipPercentage: null,
-  //   peopleNumber: null
-  // })
-
-  // const [errors, setErrors] = useState({
-  //   bill: null,
-  //   tipPercentage: null,
-  //   peopleNumber: null,
-  // })
+  // console.log("🚀 ~ file: CalculatorForm.jsx ~ line 26 ~ CalculatorForm ~ errors", errors)
+  // console.log("🚀 ~ file: CalculatorForm.jsx ~ line 26 ~ CalculatorForm ~ data", data)
 
   const handleChange = (event) => {
+    console.log(event.target.value);
     setData({
       ...data,
       [event.target.name]: event.target.value
     })
   }
   const handleChange2 = (event) => {
+    console.log(event.target.value);
     setData({
       ...data,
       [event.target.name]: event.target.defaultValue
     })
   }
-
+  
   const handleBlur = (event) => {
+    console.log(event.target.value);
     event.target.value === null || event.target.value === "" || event.target.value < 1
       ?
       setErrors({
@@ -73,11 +67,18 @@ function CalculatorForm() {
       setTotalTip(((data.tipPercentage * data.bill) / 100).toFixed(2))
       setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
     }
+
+    if (reset) {
+      form.current.reset()
+      // location.reload()
+    }
   }, [data])
+
+  const form = useRef(null)
 
   return (
     <div className='calculatorForm'>
-      <form >
+      <form ref={form}>
         <section className='bill_section'>
           <div className='label_section'>
             <label className='form_label'>Bill</label>
