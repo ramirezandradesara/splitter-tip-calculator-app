@@ -11,6 +11,7 @@ export const TipProvider = (props) => {
     const [data, setData] = useState({
         bill: null,
         tipPercentage: null,
+        tipPercentageCustom: null,
         peopleNumber: null
     })
 

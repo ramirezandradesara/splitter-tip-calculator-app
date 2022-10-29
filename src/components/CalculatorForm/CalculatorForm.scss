@@ -136,12 +136,35 @@
             @include breakpoints (sm) {
                 font-size: 24px;
             }
-        }
 
+        }
+        
+        &_label:hover{
+            background-color: hsl(172, 60%, 64%);
+            color: $veryDarkCyan;
+        }
+        
+        &_label_selected{
+            width: 30%;
+            padding: 4px 0px;  
+            color: $veryDarkCyan;
+            background-color: $strongCyan;
+            border-radius: 5px;
+            margin: 5px 0px;
+            font-size: 18.5px;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+
+            @include breakpoints (sm) {
+                font-size: 24px;
+            } 
+        }
+        
         &_input {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+            
 
             &_custom {
                 border: 1px solid transparent;

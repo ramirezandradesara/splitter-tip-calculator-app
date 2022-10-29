@@ -6,9 +6,10 @@ import { TipContext } from '../../context/TipContext'
  * Componentes del formulario
  * @returns {JSX.Element}
  * @todo stop custom input from resizing
+ * @todo loop for every property in useEffect
  */
 function CalculatorForm() {
-  
+
   const location = window.location
   const {
     totalTip,
@@ -24,8 +25,6 @@ function CalculatorForm() {
     reset,
     setReset
   } = useContext(TipContext)
-  // console.log("🚀 ~ file: CalculatorForm.jsx ~ line 26 ~ CalculatorForm ~ errors", errors)
-  // console.log("🚀 ~ file: CalculatorForm.jsx ~ line 26 ~ CalculatorForm ~ data", data)
 
   const handleChange = (event) => {
     console.log(event.target.value);
@@ -41,7 +40,7 @@ function CalculatorForm() {
       [event.target.name]: event.target.defaultValue
     })
   }
-  
+
   const handleBlur = (event) => {
     console.log(event.target.value);
     event.target.value === null || event.target.value === "" || event.target.value < 1
@@ -56,7 +55,7 @@ function CalculatorForm() {
         [event.target.name]: null
       })
   }
-
+  // acá se podria hacer un loop 
   useEffect(() => {
     if (data.bill !== null &&
       data.tipPercentage !== null &&
@@ -64,15 +63,21 @@ function CalculatorForm() {
       errors.bill === null &&
       errors.tipPercentage === null &&
       errors.peopleNumber === null) {
-      setTotalTip(((data.tipPercentage * data.bill) / 100).toFixed(2))
-      setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
+
+      if (data.tipPercentageCustom === null) {
+        setTotalTip(((data.tipPercentage * data.bill) / 100).toFixed(2))
+        setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
+      } else {
+        setTotalTip(((data.tipPercentageCustom * data.bill) / 100).toFixed(2))
+        setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
+      }
     }
 
     if (reset) {
       form.current.reset()
       // location.reload()
     }
-  }, [data])
+  }, [data, errors])
 
   const form = useRef(null)
 
@@ -104,7 +109,7 @@ function CalculatorForm() {
             <div className="error-message">{errors.tipPercentage}</div>
           </div>
           <div className='tip_section_options'>
-            <label className="tip_section_options_label">
+            <label className={data.tipPercentage === '5' ? "tip_section_options_label_selected" : "tip_section_options_label"}>
               <input
                 className="tip_section_options_input"
                 name="tipPercentage"
@@ -113,7 +118,7 @@ function CalculatorForm() {
                 value="5" />
               5%
             </label>
-            <label className="tip_section_options_label">
+            <label className={data.tipPercentage === '10' ? "tip_section_options_label_selected" : "tip_section_options_label"}>
               <input
                 className="tip_section_options_input"
                 name="tipPercentage"
@@ -122,7 +127,7 @@ function CalculatorForm() {
                 value="10" />
               10%
             </label>
-            <label className="tip_section_options_label">
+            <label className={data.tipPercentage === '15' ? "tip_section_options_label_selected" : "tip_section_options_label"}>
               <input
                 className="tip_section_options_input"
                 name="tipPercentage"
@@ -133,7 +138,7 @@ function CalculatorForm() {
             </label>
           </div>
           <div className='tip_section_options'>
-            <label className="tip_section_options_label">
+            <label className={data.tipPercentage === '25' ? "tip_section_options_label_selected" : "tip_section_options_label"}>
               <input
                 className="tip_section_options_input"
                 name="tipPercentage"
@@ -142,7 +147,7 @@ function CalculatorForm() {
                 value="25" />
               25%
             </label>
-            <label className="tip_section_options_label">
+            <label className={data.tipPercentage === '50' ? "tip_section_options_label_selected" : "tip_section_options_label"}>
               <input
                 className="tip_section_options_input"
                 name="tipPercentage"
@@ -158,7 +163,7 @@ function CalculatorForm() {
               name="tipPercentage"
               onChange={handleChange}
               onBlur={handleBlur}
-              value={data.tipPercentage}
+              value={data.tipPercentageCustom}
               placeholder="Custom"
             />
 
