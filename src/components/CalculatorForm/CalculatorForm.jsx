@@ -27,7 +27,6 @@ function CalculatorForm() {
   } = useContext(TipContext)
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setData({
       ...data,
       [event.target.name]: event.target.value
@@ -35,7 +34,6 @@ function CalculatorForm() {
   }
 
   const handleChange2 = (event) => {
-    console.log(event.target.value);
     setData({
       ...data,
       [event.target.name]: event.target.defaultValue
@@ -43,7 +41,6 @@ function CalculatorForm() {
   }
 
   const handleBlur = (event) => {
-    console.log(event.target.value);
     event.target.value === null || event.target.value === "" || event.target.value < 1
       ?
       setErrors({
@@ -56,7 +53,7 @@ function CalculatorForm() {
         [event.target.name]: null
       })
   }
-  
+
   // acá se podria hacer un loop 
   useEffect(() => {
     if (data.bill !== null &&
@@ -67,10 +64,10 @@ function CalculatorForm() {
       errors.peopleNumber === null) {
 
       if (data.tipPercentageCustom === null) {
-        setTotalTip(((data.tipPercentage * data.bill) / 100).toFixed(2))
+        setTotalTip((((data.tipPercentage * data.bill) / 100).toFixed(2)) / data.peopleNumber )
         setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
       } else {
-        setTotalTip(((data.tipPercentageCustom * data.bill) / 100).toFixed(2))
+        setTotalTip((((data.tipPercentageCustom * data.bill) / 100).toFixed(2)) / data.peopleNumber )
         setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
       }
     }
