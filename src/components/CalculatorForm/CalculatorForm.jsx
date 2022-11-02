@@ -33,6 +33,7 @@ function CalculatorForm() {
       [event.target.name]: event.target.value
     })
   }
+
   const handleChange2 = (event) => {
     console.log(event.target.value);
     setData({
@@ -55,6 +56,7 @@ function CalculatorForm() {
         [event.target.name]: null
       })
   }
+  
   // acá se podria hacer un loop 
   useEffect(() => {
     if (data.bill !== null &&
