@@ -74,8 +74,8 @@ function CalculatorForm() {
     }
 
     if (reset) {
-      form.current.reset()
-      // location.reload()
+      // form.current.reset()
+      location.reload()
     }
   }, [data, errors])
 
