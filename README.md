@@ -1,6 +1,6 @@
 # Frontend Mentor - Tip calculator app solution
 
-This is a solution to the [Tip calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Tip calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX). 
 
 ## Table of contents
 
@@ -40,7 +40,6 @@ Users should be able to:
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Sass](https://sass-lang.com/) - For styles
@@ -81,7 +80,7 @@ This project give me the opportunity to keep learning about Sass. This technolog
   }
 }
 ```
-Handling form has become easier thanks to ES6 syntax:
+Handling forms has become easier thanks to ES6 syntax.
 
 ```js
 const handleBlur = (event) => {
@@ -98,7 +97,6 @@ const handleBlur = (event) => {
       });
 };
 
-  js
 const handleChange = (event) => {
   setData({
     ...data,
@@ -107,16 +105,18 @@ const handleChange = (event) => {
 };
 ```
 
+
 ### Continued development
 
 For my next project I would like to divide the logic in differents files and use Typescript. 
 
+
 ### Useful resources
 
-- [Function onChange and onBlur](https://bluuweb.github.io/react/formularios/) - This is an amazing article which helped me reduce code. This funcion helped me listening changes in all inputs instead of making a function for every one of them.
+- [Function onChange and onBlur](https://bluuweb.github.io/react/formularios/) - This is an amazing article which let me reduce code. This funcion helped me listening to changes in all inputs instead of making a function for every one of them.
+
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
 - Frontend Mentor - [@ramirezandradesara](https://www.frontendmentor.io/profile/ramirezandradesara)
 - Linkedin - [Sara Ramírez](https://www.linkedin.com/in/sara-ramirez-andrade/)
