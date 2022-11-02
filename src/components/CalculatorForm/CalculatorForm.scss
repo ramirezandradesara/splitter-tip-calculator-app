@@ -4,7 +4,6 @@
     display: flex;
     min-width: 50%;
     min-height: 100%;
-    margin-right: 15px;
 
     @include breakpoints(sm) {
         margin-right: 0px;

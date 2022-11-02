@@ -4,13 +4,15 @@
     background-color: $white;
     min-width: 50%;
     min-height: 50%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
     border-radius: 15px;
     margin-top: 50px;
-    display: flex;
     padding: 30px;
     
     @include breakpoints(sm) {
+        display: flex;
         flex-direction: column;
         padding: 20px;
         min-width: 100%;
