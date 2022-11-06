@@ -9,10 +9,10 @@ export const TipProvider = (props) => {
     const [reset, setReset] = useState(false)
 
     const [data, setData] = useState({
-        bill: null,
-        tipPercentage: null,
-        tipPercentageCustom: null,
-        peopleNumber: null
+        bill: '',
+        tipPercentage: '',
+        tipPercentageCustom: '',
+        peopleNumber: '',
     })
 
     const [errors, setErrors] = useState({

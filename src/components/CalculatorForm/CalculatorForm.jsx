@@ -54,26 +54,34 @@ function CalculatorForm() {
       })
   }
 
-  // acá se podria hacer un loop 
   useEffect(() => {
-    if (data.bill !== null &&
-      data.tipPercentage !== null &&
-      data.peopleNumber !== null &&
+    if (data.bill !== '' &&
+      data.tipPercentage !== '' &&
+      data.peopleNumber !== '' &&
       errors.bill === null &&
       errors.tipPercentage === null &&
-      errors.peopleNumber === null) {
+      errors.peopleNumber === null
+      && reset === false) {
 
-      if (data.tipPercentageCustom === null) {
-        setTotalTip((((data.tipPercentage * data.bill) / 100).toFixed(2)) / data.peopleNumber )
+      if (data.tipPercentageCustom === '') {
+
+        const tipPercentage = ((data.tipPercentage * data.bill) / 100).toFixed(2);
+        const tipPercentagePerPerson = tipPercentage / data.peopleNumber;
+        setTotalTip(tipPercentagePerPerson)
         setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
       } else {
-        setTotalTip((((data.tipPercentageCustom * data.bill) / 100).toFixed(2)) / data.peopleNumber )
+        
+        const tipPercentage = ((data.tipPercentageCustom * data.bill) / 100).toFixed(2);
+        const tipPercentagePerPerson = tipPercentage / data.peopleNumber;
+        setTotalTip(tipPercentagePerPerson)
         setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
       }
+
     }
 
     if (reset) {
       // form.current.reset()
+      // setReset(false)
       location.reload()
     }
   }, [data, errors])
@@ -98,6 +106,7 @@ function CalculatorForm() {
               onBlur={handleBlur}
               label="Bill"
               placeholder="0"
+              value={data.bill}
             />
           </div>
         </section>
@@ -161,7 +170,7 @@ function CalculatorForm() {
               type="number"
               name="tipPercentage"
               onChange={handleChange}
-              onBlur={handleBlur}
+              // onBlur={handleBlur}
               value={data.tipPercentageCustom}
               placeholder="Custom"
             />
@@ -179,7 +188,7 @@ function CalculatorForm() {
             <input
               type="number"
               name="peopleNumber"
-              contenteditable="false"
+              // contentEditable="false"
               className={errors.peopleNumber && 'error-message-input'}
               onChange={handleChange}
               onBlur={handleBlur}
