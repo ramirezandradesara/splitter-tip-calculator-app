@@ -3,27 +3,26 @@ import { createContext, useState } from "react";
 export const TipContext = createContext()
 
 export const TipProvider = (props) => {
-  const [totalTip, setTotalTip] = useState(0)
-  const [tipPerPerson, setTipPerPerson] = useState(0)
-  const [billPerPerson, setBillPerPerson] = useState(0)
-  const [reset, setReset] = useState(false)
+  const [totalTip, setTotalTip] = useState(0);
+  const [tipPerPerson, setTipPerPerson] = useState(0);
+  const [billPerPerson, setBillPerPerson] = useState(0);
+  const [reset, setReset] = useState(false);
 
   const [data, setData] = useState({
     bill: '',
     tipPercentage: '',
     tipPercentageCustom: '',
     peopleNumber: '',
-  })
+  });
 
   const [errors, setErrors] = useState({
     bill: null,
     tipPercentage: null,
     peopleNumber: null,
-  })
+  });
 
 
-  function calculation() {
-
+  const calculation = () =>{
     if (data.bill !== '' &&
       data.tipPercentage !== '' &&
       data.peopleNumber !== '' &&
@@ -42,7 +41,27 @@ export const TipProvider = (props) => {
       setTotalTip(tipPercentagePerPerson)
       setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
     }
-  }
+  };
+
+  const handleReset = () => {
+    setReset(true)
+    setTotalTip(0)
+    setTipPerPerson(0)
+    setBillPerPerson(0)
+
+    setData({
+      ...data,
+      bill: '',
+      tipPercentage: '',
+      peopleNumber: '',
+    })
+    setErrors({
+      ...errors,
+      bill: null,
+      tipPercentage: null,
+      peopleNumber: null
+    })
+  };
 
   return (
     <TipContext.Provider
@@ -59,7 +78,8 @@ export const TipProvider = (props) => {
         setErrors,
         reset,
         setReset,
-        calculation
+        calculation,
+        handleReset
       }}
     >
       {props.children}

@@ -6,40 +6,9 @@ function Output() {
 
   const {
     totalTip,
-    setTotalTip,
-    tipPerPerson,
-    setTipPerPerson,
     billPerPerson,
-    setBillPerPerson,
-    data,
-    setData,
-    errors,
-    setErrors,
-    reset,
-    setReset
+    handleReset
   } = useContext(TipContext)
-
-  const handleReset = () => {
-    setTotalTip(0)
-    setTipPerPerson(0)
-    setBillPerPerson(0)
-
-    setData({
-      ...data,
-      bill: '',
-      tipPercentage: '',
-      peopleNumber: '',
-    })
-
-    setErrors({
-      ...errors,
-      bill: null,
-      tipPercentage: null,
-      peopleNumber: null
-    })
-
-    setReset(true)
-  }
 
   return (
     <div className='output'>

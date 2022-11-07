@@ -11,12 +11,6 @@ function CalculatorForm() {
 
   const form = useRef(null)
   const {
-    totalTip,
-    setTotalTip,
-    tipPerPerson,
-    setTipPerPerson,
-    billPerPerson,
-    setBillPerPerson,
     data,
     setData,
     errors,
@@ -31,19 +25,18 @@ function CalculatorForm() {
    * @param {*} event 
    */
   const handleChange = (event) => {
-    console.log(event.target.value)
     setData({
       ...data,
       [event.target.name]: event.target.value
     })
-  }
+  };
 
   const handleChangeRadioInputs = (event) => {
     setData({
       ...data,
       [event.target.name]: event.target.defaultValue
     })
-  }
+  };
 
   const handleBlur = (event) => {
     event.target.value === null || event.target.value === "" || event.target.value < 1
@@ -57,7 +50,7 @@ function CalculatorForm() {
         ...errors,
         [event.target.name]: null
       })
-  }
+  };
   
   useEffect(() => {
     calculation()
@@ -68,7 +61,6 @@ function CalculatorForm() {
     }
 
   }, [data, errors])
-
 
   return (
     <div className='calculatorForm'>
