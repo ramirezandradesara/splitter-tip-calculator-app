@@ -8,7 +8,7 @@ import { TipContext } from '../../context/TipContext'
  * @todo loop for every property in useEffect
  */
 function CalculatorForm() {
-  
+
   const form = useRef(null)
   const {
     totalTip,
@@ -22,7 +22,8 @@ function CalculatorForm() {
     errors,
     setErrors,
     reset,
-    setReset
+    setReset,
+    calculation
   } = useContext(TipContext)
 
   /**
@@ -58,30 +59,6 @@ function CalculatorForm() {
       })
   }
 
-  function calculation() {
-    if (data.bill !== '' &&
-      data.tipPercentage !== '' &&
-      data.peopleNumber !== '' &&
-      errors.bill === null &&
-      errors.tipPercentage === null &&
-      errors.peopleNumber === null
-      && reset === false) {
-
-      if (data.tipPercentageCustom === '') {
-
-        const tipPercentage = ((data.tipPercentage * data.bill) / 100).toFixed(2);
-        const tipPercentagePerPerson = tipPercentage / data.peopleNumber;
-        setTotalTip(tipPercentagePerPerson)
-        setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
-      } else {
-
-        const tipPercentage = ((data.tipPercentageCustom * data.bill) / 100).toFixed(2);
-        const tipPercentagePerPerson = tipPercentage / data.peopleNumber;
-        setTotalTip(tipPercentagePerPerson)
-        setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
-      }
-    }
-  }
 
   useEffect(() => {
     calculation()
@@ -170,17 +147,15 @@ function CalculatorForm() {
                 value="50" />
               50%
             </label>
-
             <input
               className="tip_section_options_input_custom"
               type="number"
               name="tipPercentage"
               onChange={handleChange}
               // onBlur={handleBlur}
-              value={data.tipPercentageCustom}
+              // value={data.tipPercentageCustom}
               placeholder="Custom"
             />
-
           </div>
         </section>
 

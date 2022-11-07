@@ -21,6 +21,31 @@ export const TipProvider = (props) => {
         peopleNumber: null,
     })
 
+    function calculation() {
+        if (data.bill !== '' &&
+          data.tipPercentage !== '' &&
+          data.peopleNumber !== '' &&
+          errors.bill === null &&
+          errors.tipPercentage === null &&
+          errors.peopleNumber === null
+          && reset === false) {
+    
+          if (data.tipPercentageCustom === '') {
+    
+            const tipPercentage = ((data.tipPercentage * data.bill) / 100).toFixed(2);
+            const tipPercentagePerPerson = tipPercentage / data.peopleNumber;
+            setTotalTip(tipPercentagePerPerson)
+            setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
+          } else {
+    
+            const tipPercentage = ((data.tipPercentageCustom * data.bill) / 100).toFixed(2);
+            const tipPercentagePerPerson = tipPercentage / data.peopleNumber;
+            setTotalTip(tipPercentagePerPerson)
+            setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
+          }
+        }
+      }
+
     return (
         <TipContext.Provider
             value={{
@@ -35,7 +60,8 @@ export const TipProvider = (props) => {
                 errors, 
                 setErrors,
                 reset, 
-                setReset
+                setReset,
+                calculation
             }}
         >
             {props.children}
