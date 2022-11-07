@@ -5,12 +5,11 @@ import { TipContext } from '../../context/TipContext'
 /**
  * Componentes del formulario
  * @returns {JSX.Element}
- * @todo stop custom input from resizing
  * @todo loop for every property in useEffect
  */
 function CalculatorForm() {
-
-  const location = window.location
+  
+  const form = useRef(null)
   const {
     totalTip,
     setTotalTip,
@@ -26,14 +25,19 @@ function CalculatorForm() {
     setReset
   } = useContext(TipContext)
 
+  /**
+   * Functions that handle inputs and save what the user enters
+   * @param {*} event 
+   */
   const handleChange = (event) => {
+    console.log(event.target.value)
     setData({
       ...data,
       [event.target.name]: event.target.value
     })
   }
 
-  const handleChange2 = (event) => {
+  const handleChangeRadioInputs = (event) => {
     setData({
       ...data,
       [event.target.name]: event.target.defaultValue
@@ -54,7 +58,7 @@ function CalculatorForm() {
       })
   }
 
-  useEffect(() => {
+  function calculation() {
     if (data.bill !== '' &&
       data.tipPercentage !== '' &&
       data.peopleNumber !== '' &&
@@ -70,23 +74,25 @@ function CalculatorForm() {
         setTotalTip(tipPercentagePerPerson)
         setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
       } else {
-        
+
         const tipPercentage = ((data.tipPercentageCustom * data.bill) / 100).toFixed(2);
         const tipPercentagePerPerson = tipPercentage / data.peopleNumber;
         setTotalTip(tipPercentagePerPerson)
         setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
       }
-
     }
+  }
+
+  useEffect(() => {
+    calculation()
 
     if (reset) {
-      // form.current.reset()
-      // setReset(false)
-      location.reload()
+      form.current.reset()
+      setReset(false)
     }
+
   }, [data, errors])
 
-  const form = useRef(null)
 
   return (
     <div className='calculatorForm'>
@@ -122,7 +128,7 @@ function CalculatorForm() {
                 className="tip_section_options_input"
                 name="tipPercentage"
                 type="radio"
-                onClick={handleChange2}
+                onClick={handleChangeRadioInputs}
                 value="5" />
               5%
             </label>
@@ -131,7 +137,7 @@ function CalculatorForm() {
                 className="tip_section_options_input"
                 name="tipPercentage"
                 type="radio"
-                onClick={handleChange2}
+                onClick={handleChangeRadioInputs}
                 value="10" />
               10%
             </label>
@@ -140,7 +146,7 @@ function CalculatorForm() {
                 className="tip_section_options_input"
                 name="tipPercentage"
                 type="radio"
-                onClick={handleChange2}
+                onClick={handleChangeRadioInputs}
                 value="15" />
               15%
             </label>
@@ -151,7 +157,7 @@ function CalculatorForm() {
                 className="tip_section_options_input"
                 name="tipPercentage"
                 type="radio"
-                onClick={handleChange2}
+                onClick={handleChangeRadioInputs}
                 value="25" />
               25%
             </label>
@@ -160,7 +166,7 @@ function CalculatorForm() {
                 className="tip_section_options_input"
                 name="tipPercentage"
                 type="radio"
-                onClick={handleChange2}
+                onClick={handleChangeRadioInputs}
                 value="50" />
               50%
             </label>

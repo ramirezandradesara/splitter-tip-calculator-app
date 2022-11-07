@@ -23,12 +23,16 @@ function Output() {
     setTotalTip(0)
     setTipPerPerson(0)
     setBillPerPerson(0)
+
     setData({
-      bill: null,
-      tipPercentage: null,
-      peopleNumber: null
+      ...data,
+      bill: '',
+      tipPercentage: '',
+      peopleNumber: '',
     })
+
     setErrors({
+      ...errors,
       bill: null,
       tipPercentage: null,
       peopleNumber: null
