@@ -5,7 +5,6 @@ import { TipContext } from '../../context/TipContext'
 /**
  * Componentes del formulario
  * @returns {JSX.Element}
- * @todo loop for every property in useEffect
  */
 function CalculatorForm() {
 
@@ -51,7 +50,7 @@ function CalculatorForm() {
         [event.target.name]: null
       })
   };
-  
+
   useEffect(() => {
     calculation()
 
@@ -60,8 +59,8 @@ function CalculatorForm() {
       setReset(false)
     }
 
-  }, [data, errors])
-
+  }, [data, errors, reset, calculation, setReset])
+  
   return (
     <div className='calculatorForm'>
       <form ref={form}>

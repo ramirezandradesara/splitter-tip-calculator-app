@@ -33,11 +33,11 @@ export const TipProvider = (props) => {
 
       let tipPercentage = 0;
       if (data.tipPercentageCustom === '') {
-        tipPercentage = ((data.tipPercentage * data.bill) / 100).toFixed(2);
+        tipPercentage = ((data.tipPercentage * data.bill) / 100);
       } else {
-        tipPercentage = ((data.tipPercentageCustom * data.bill) / 100).toFixed(2);
+        tipPercentage = ((data.tipPercentageCustom * data.bill) / 100);
       }
-      let tipPercentagePerPerson = tipPercentage / data.peopleNumber;
+      let tipPercentagePerPerson = (tipPercentage / data.peopleNumber).toFixed(2);
       setTotalTip(tipPercentagePerPerson)
       setBillPerPerson((data.bill / data.peopleNumber).toFixed(2))
     }
