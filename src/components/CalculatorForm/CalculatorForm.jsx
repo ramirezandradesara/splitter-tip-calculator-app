@@ -58,8 +58,7 @@ function CalculatorForm() {
         [event.target.name]: null
       })
   }
-
-
+  
   useEffect(() => {
     calculation()
 
